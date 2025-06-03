@@ -8,10 +8,20 @@ const excluir = document.getElementById("buttonExcluir");
 const limpar = document.getElementById("limparFila");
 const vender = document.getElementById("buttonVender");
 
+const lanche = document.getElementById("lancheInput")
+
+lanche.addEventListener("keypress", function(event){
+  if(event.key === "Enter"){
+    cadastrarPedido()
+  }
+})
+
 vender.addEventListener("click", entregarPedido);
 limpar.addEventListener("click", limparFila);
 cadastrar.addEventListener("click", cadastrarPedido);
 excluir.addEventListener("click", excluirPedido);
+
+
 
 function entregarPedido() {
   if (fila.vazio()) {
@@ -59,6 +69,9 @@ function excluirPedido() {
   if (paragrafos.length > 0) {
     paragrafos[0].remove(); 
 
+    let pedido = fila.getInicio()
+
+    alert(`O pedido ${pedido.getDescricao()} foi excluído da fila!`);
     fila.desenfileirar(); 
     renumerarPedidos();  
     exibirPedidos();
